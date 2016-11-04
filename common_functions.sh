@@ -106,32 +106,48 @@ contains_element () {
   return 1
 }
 
-debug() {
-  if [[ $SHOW_TF_DEBUG == "1" ]]; then
-    echo "`date '+%F %T'` - $*"
-  fi
-}
+#debug() {
+#  if [[ $SHOW_TF_DEBUG == "1" ]]; then
+#    echo "`date '+%F %T'` - $*"
+#  fi
+#}
 
-function detectOS {
-    platform='unknown'
-    unamestr=`uname`
-    if [[ "$unamestr" == 'Linux' ]]; then
-       platform='linux'
-    elif [[ "$unamestr" == 'Darwin' ]]; then
-       platform='macos'
-    fi
-}
-
-function exists() {
+exists() {
   command -v "$1" >/dev/null 2>&1
 }
 
-function terrabin() {
+run_tf() {
   if exists terragrunt; then
-    echo "terragrunt"
+    TF_RUNNABLE_BIN="terragrunt"
   elif exists terraform; then
-    echo "terraform"
+    TF_RUNNABLE_BIN="terraform"
+  else
+    die "Can't find terragrunt or terraform in PATH. Install them."
   fi
+
+  echo
+  printf '%*s\n' 58 | tr ' ' '*'
+
+  msg_info "Running command: $TF_RUNNABLE_BIN $@"
+
+  printf '%*s\n' 58 | tr ' ' '*'
+
+  $TF_RUNNABLE_BIN "$@" 1>&2
 }
 
+run_tf_only() {
+  if exists terraform; then
+    TF_RUNNABLE_BIN="terraform"
+  else
+    die "Can't find terraform in PATH. Install terraform."
+  fi
 
+  echo
+  printf '%*s\n' 58 | tr ' ' '*'
+
+  msg_info "Running command: $TF_RUNNABLE_BIN $@"
+
+  printf '%*s\n' 58 | tr ' ' '*'
+
+  $TF_RUNNABLE_BIN "$@" 1>&2
+}
