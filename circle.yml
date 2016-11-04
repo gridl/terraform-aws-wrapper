@@ -1,0 +1,17 @@
+#machine:
+#  environment:
+#    TF_VERSION: 0.7.7
+#    TG_VERSION: 0.1.2
+#    PATH: /home/ubuntu/bin/${TF_VERSION}:/home/ubuntu/bin/${TG_VERSION}:$PATH
+#
+#dependencies:
+#  cache_directories:
+#    - /home/ubuntu/bin/
+#  pre:
+#    - ./ci/setup.sh
+#
+#test:
+#  override:
+#    - ./ci/validate-syntax.sh
+#
+#    - ./ci/plan-all-layers.sh company-dev

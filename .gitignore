@@ -1,0 +1,19 @@
+*~
+.terraform
+.layers
+*tfstate*
+crash.log
+*.zip
+logs
+*.pub
+*.pem
+*.key
+*.crt
+*.csr
+*.srl
+*.iml
+graph.png
+
+#####
+# Symlinked layers should be ignored by git also. List them below
+#####

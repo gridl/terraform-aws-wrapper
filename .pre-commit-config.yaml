@@ -1,0 +1,11 @@
+-   repo: git://github.com/antonbabenko/pre-commit-terraform
+    sha: v1.0.0
+    hooks:
+      -   id: terraform_fmt
+
+-   repo: git://github.com/pre-commit/pre-commit-hooks
+    sha: v0.6.0
+    hooks:
+      -   id: end-of-file-fixer
+      -   id: trailing-whitespace
+      -   id: check-merge-conflict
