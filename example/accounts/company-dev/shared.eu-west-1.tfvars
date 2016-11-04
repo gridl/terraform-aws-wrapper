@@ -1,0 +1,1 @@
+# some vars for "shared" layer
