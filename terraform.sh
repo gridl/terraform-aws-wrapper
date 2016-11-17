@@ -133,7 +133,7 @@ fi
 
 tf_init() {
 
-  rm -rf ${terraform_work_dir}/*
+  rm -rf ${terraform_work_dir}
   mkdir -p ${terraform_work_dir}
   cd ${terraform_work_dir}
 
